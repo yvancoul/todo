@@ -1,7 +1,7 @@
 import { Key, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Completed( props: { message: any; }) {
+export default function PartialCompleted( props: { message: any; }) {
 
     const { message } = props;
 
@@ -31,30 +31,51 @@ export default function Completed( props: { message: any; }) {
     console.log(resToDo)
     return (
         <>
-          <div className="flex  flex-row gap-5 px-5 py-10 ">
-          
-          <div className="flex flex-row items-center justify-center min-h-screen gap-5 px-5 py-20 bg-gray-100 flex-wrap">
-  
-            {resToDo.map((data: { id: Key | null | undefined, title: string, date: string, desc: string, priority: string, status: string })  =>
-                data.status === message ? (
-                    <div
-                    key={data.id}
-                    className="w-full max-w-md p-5 text-center bg-white border rounded-lg shadow-md border-neutral-300">
-                        <h4 className="mb-2 text-xl font-semibold text-gray-800">
-                            {data.title}
-                        </h4>
-                        <h3 className="mb-1 text-gray-600 text-md"> {data.date}</h3>
-                            <h3 className="text-gray-600 text-md">Description: {data.desc}</h3>
-                            <h3 className="text-gray-600 text-md">Priority: {data.priority}</h3>
-                            <h3 className="text-gray-600 text-md">Status: {data.status}</h3>
-                            <NavLink data-info={data.id} to="/edit" className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Edit</NavLink>
-                            <NavLink data-info={data.id} to="/delete" className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Delete</NavLink>
+        <div className="p-4 sm:ml-64">
+            <div className="w-full max-w-5xl p-4 bg-white sm:p-6 dark:bg-white-800 dark:border-white-100">
+             
+              <ul className="my-4 space-y-3">
     
-                    </div>
-                ) : null
-              )}
+            {resToDo.map((data: { id: Key | null | undefined, title: string, date: string, desc: string, priority: string, status: string })  =>
+                data.status == 'completed' ? (
+                    <li key={data.id}>
+                      <div className="w-full max-w-4xl p-6 font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-black">
+                              <div className="flex justify-between items-center">
+                                  <div>
+                                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{data.title}</h5>
+                                      <blockquote className="text-xl italic font-semibold text-gray-900 dark:text-white">
+                                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 3xl:max-w-3xl w-full">
+                {data.desc}
+              </p>
+               </blockquote>
+                             
+              
+               </div>  </div>
+                                  <div className="flex space-x-2 ml-auto">
+                                      
+                                  <div className="flex space-x-2 ml-auto">
+                                      <button onClick={() => handelete(data.id)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                      ✎
+                                      </button>
+                                      <button onClick={()=>supprime(data.id)}  className="py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-red-800 dark:text-gray-400 dark:border-red-800 dark:hover:text-white dark:hover:bg-red-700">
+                                      ✖
+                                      </button>
+                                  </div>                     </div>  
+              
+                                  <div className="flex mt-4 md:mt-6">
+                                  <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">
+                                Tache Effectuée ?
+                                  </button>
+                              </div>
+                                   
+                                        </div>
+                                   
+                                        </li>
+                     ) : null
+                   )}     
+                 </ul>
             </div>
-            </div>
+            </div> 
         </>
     )
 }

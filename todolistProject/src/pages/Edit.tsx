@@ -64,19 +64,25 @@ export default function Edit() {
         }
     }
 
+  
+
     const misejaour = async () => {
       
+     
 
 
         try {
         const response = await fetch('http://localhost:3000/todo/'+params.id,{
                 method: 'PUT',
                 body: JSON.stringify(resToDo)
+            
 
         });
         const datas = await response.json(); 
         if (datas) {
             setResToDo(datas);
+
+           
             
 
         }
@@ -96,6 +102,7 @@ export default function Edit() {
     <div className="w-full max-w-5xl p-4 bg-white sm:p-6 rounded-lg shadow-lg">
 
         <div className="flex flex-col items-center">
+
             
             {resToDo ? (
                 <div className="flex flex-col items-start gap-5 px-5 py-10 border border-gray-300 rounded-md shadow-md bg-gray-50 w-full">

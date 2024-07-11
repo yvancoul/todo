@@ -10,6 +10,7 @@ import Edit from './pages/Edit';
 import Add from './pages/Add';
 import Important from './pages/Important';
 import Tasks from './pages/Tasks';
+import Completedx from './pages/Completedx';
 //Creation of router
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/tasks",
     element: <Tasks />
+  },
+  {
+    path: "/completed",
+    element: <Completedx />
   },
 
 ]);
